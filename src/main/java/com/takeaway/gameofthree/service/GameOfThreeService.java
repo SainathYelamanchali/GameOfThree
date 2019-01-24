@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GameOfThreeService {
     private Logger LOGGER = LoggerFactory.getLogger(GameOfThreeService.class);
     public static long GAME_OF_THREE = 3;
+
     private static Map<String, String> instancesMap;
 
     @Autowired
@@ -24,12 +25,16 @@ public class GameOfThreeService {
 
     static {
         instancesMap = new HashMap<>();
-        instancesMap.put("player1", GameOfThreeConfig.PLAYER1_UUID);
-        instancesMap.put("player2", GameOfThreeConfig.PLAYER2_UUID);
+        instancesMap.put(GameOfThreeConfig.PLAYER_1, GameOfThreeConfig.PLAYER1_UUID);
+        instancesMap.put(GameOfThreeConfig.PLAYER_2, GameOfThreeConfig.PLAYER2_UUID);
     }
 
-    public String getUuidForInstance() {
+    public String getLocalInstanceUuid() {
         String instanceId = config.getInstanceId();
+        return getUuidForInstance(instanceId);
+    }
+
+    public String getUuidForInstance(String instanceId) {
         if (instanceId == null) {
             throw new IllegalArgumentException("Invalid instanceId passed");
         }

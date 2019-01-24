@@ -5,18 +5,19 @@ import com.takeaway.gameofthree.domain.QueueMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 /**
- * This class listens to the queue, processes the message and re-piblishes modified value
+ * This class listens to the queue, processes the message and re-publishes modified value
  */
 @Component
-@RabbitListener(queues = "gameOfThree")
 public class MessageListener {
     private Logger LOGGER = LoggerFactory.getLogger(MessageListener.class);
     @Autowired
@@ -28,21 +29,35 @@ public class MessageListener {
     @Autowired
     private GameOfThreeConfig config;
 
-    @RabbitHandler
-    public void receive(Serializable message) {
+
+    @RabbitListener(queues = GameOfThreeConfig.QUEUE_NAME1)
+    public void queue1(Serializable mg) {
+        receive(mg);
+    }
+
+    @RabbitListener(queues = GameOfThreeConfig.QUEUE_NAME2)
+    public void queue2(Serializable mg) {
+        receive(mg);
+    }
+
+
+    private void receive(Serializable mg) {
 
         try {
-            if (message instanceof Message) {
-                byte[] msg = ((Message) message).getBody();
-                QueueMessage queueMessage = (QueueMessage) message;
-                LOGGER.info("Received message from Queue :{} ", queueMessage);
-                if (!queueMessage.getUuid().equals(service.getUuidForInstance())) {
-                    long value = queueMessage.getValue();
-                    doWorkAndPublish(value);
-                }
+            Message message = (Message) mg;
+            ByteArrayInputStream in = new ByteArrayInputStream(message.getBody());
+            ObjectInputStream is = new ObjectInputStream(in);
+            QueueMessage queueMessage = (QueueMessage) is.readObject();
+            String messageUuid = queueMessage.getUuid();
+            String localInstanceUuid = service.getLocalInstanceUuid();
+            if (!StringUtils.isEmpty(messageUuid) && !messageUuid.equals(localInstanceUuid)) {
+                long value = queueMessage.getValue();
+                doWorkAndPublish(value);
+                LOGGER.info("Processed message from Queue :{} ", queueMessage);
             }
+
         } catch (Exception e) {
-            LOGGER.error("Exception in processing the message from queue :{}", e);
+            LOGGER.error("Exception in processing the message from queue :", e);
         }
 
     }
