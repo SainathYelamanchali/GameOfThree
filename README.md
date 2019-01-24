@@ -3,7 +3,7 @@
 Game repo link : https://github.com/SainathYelamanchali/GameOfThree
 
 This project is developed on Windows environment as event driven micro-service which enables to play game of three between two players.
-After two players services are started , game can be initiated and continues to play till one of the player reached 1. and eventually is the winner!!!
+After two players services are started , game can be initiated and continues to play till one of the player reached 1 and eventually is the winner!!!
 The communication between two micro-services is done by Rabbit Mq messaging.
 
 ### Prerequisites
