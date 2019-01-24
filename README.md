@@ -57,6 +57,7 @@ for two different players
 
 
  Method : GET
+ 
  URL : http:// {hostname}: {port}/GameOfThree/init
  
 ## For example in localhost:
