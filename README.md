@@ -2,16 +2,16 @@
 
 Game repo link : https://github.com/SainathYelamanchali/GameOfThree
 
-This project is developed as micor-service to play game of three between two players
-After two players are started , game can be initiated and continues to play till one of the player reached 1.
-The communication between two micro-services is done by Rabbit Mq.
+This project is developed as event driven micro-service which enables to play game of three between two players
+After two players services are started , game can be initiated and continues to play till one of the player reached 1.
+The communication between two micro-services is done by Rabbit Mq messaging.
 
 ### Prerequisites
 
 1. Eclipse/IntelliJ IDE  with java 8 compatible
 2. Maven installed
-3. Erlang installed
-4. Rabbit MQ server based on OS installed 
+3. Erlang installed (required for Rabbit Mq)
+4. Rabbit MQ server installed 
 
 ## Getting Started
 
@@ -21,7 +21,14 @@ go to pom.xml path -> mvn clean install
 
 ### To Run the application from command line
  
-go to pom.xml path -> mvn spring-boot:run
+go to pom.xml path ->
+
+To bring Player 1 instance:
+mvn spring-boot:run -Dspring.boot.run.arguments=--server.port=8085,instanceId=player1
+
+To bring Player 2 instance:
+mvn spring-boot:run -Dspring.boot.run.arguments=--server.port=8086,instanceId=player2
+
 
 ### To Run the application from eclipse
 
