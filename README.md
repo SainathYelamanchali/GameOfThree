@@ -46,12 +46,13 @@ mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8086,instanceId=pl
 
  Method : GET
  URL : http:// {hostname}: {port}/GameOfThree/init
-For example:
-If player1 wants to start the game,
-GET: http://localhost:8085/GameOfThree/init
+ 
+## For example:
+*If player1 wants to start the game,
+*GET: http://localhost:8085/GameOfThree/init
 
-If player2 wants to start the game
-GET : http://localhost:8086/GameOfThree/init
+*If player2 wants to start the game
+*GET : http://localhost:8086/GameOfThree/init
 
   
 
