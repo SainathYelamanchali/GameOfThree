@@ -18,7 +18,9 @@ The communication between two micro-services is done by Rabbit Mq messaging.
 
 ## Getting Started
 1. Start the rabbit mq service before starting the players
-  check the status : rabbitmqctl.bat status
+
+  check the status of rabbit mq : rabbitmqctl.bat status
+  
   reference: https://www.rabbitmq.com/install-windows-manual.html
  
 2. Checkout the code to local repo and build the application using maven command
@@ -69,7 +71,9 @@ GET : http://localhost:8086/GameOfThree/init
 ## How to check the messages in Rabbit Mq server
 
 Open the below url in browser:
+
 http: //{hostname}:15672/
+
 Credentials: guest/guest
 
 ## Built With
