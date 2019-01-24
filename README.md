@@ -10,6 +10,7 @@ The communication between two micro-services is done by Rabbit Mq messaging.
 
 1. Eclipse/IntelliJ IDE  with java 8 compatible
 2. Maven installed
+3. JDK 8 installed
 3. Erlang installed (required for Rabbit Mq)
 4. Rabbit MQ server installed 
 5. Git installed
