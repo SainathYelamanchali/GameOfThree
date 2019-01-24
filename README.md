@@ -24,39 +24,48 @@ go to pom.xml path -> mvn clean install
 go to pom.xml path ->
 
 To bring Player 1 instance:
-mvn spring-boot:run -Dspring.boot.run.arguments=--server.port=8085,instanceId=player1
+mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8085,instanceId=player1
 
 To bring Player 2 instance:
-mvn spring-boot:run -Dspring.boot.run.arguments=--server.port=8086,instanceId=player2
+mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8086,instanceId=player2
 
 
-### To Run the application from eclipse
+### To Run the application from IDE
 
-1. Import code into local IDE
-2. Run GameOfThreeApplication.java by changing the port number for two different players
+1. Import code into local IDE as maven project
+2. Run GameOfThreeApplication.java by changing the port number and instanceId for two different players
 
-### Unit tests
 
-SpringRunner Junits are written for Services,Factory and repository classes .
 
-### Demo 
 
-   #### Welcome to Multi Player Game ###
 
-  Select below options to proceed.
+### How to start the game?
+ 
+ Hit the below url from specific player instance.
+
+
+ Method : GET
+ URL : http:// {hostname}: {port}/GameOfThree/init
+For example:
+If player1 wants to start the game,
+GET: http://localhost:8085/GameOfThree/init
+
+If player2 wants to start the game
+GET : http://localhost:8086/GameOfThree/init
+
   
-   * 1.Create a character.
-   * 2.Do you already know your registered Character details?
-   * 3.Exit
 
-  ...........
+
+
+
+
 
 ## Built With
 
 * [Spring boot - 2.0.8 RELEASE](https://docs.spring.io/spring-boot/docs/) - The Spring Boot framework
 * [Maven](https://maven.apache.org/) - Dependency Management 
 * [Erlang](https://www.erlang.org/downloads) - Erlang 
-* [Rabbit Mq] (https://www.rabbitmq.com/download.html) - Rabbit MQ server
+* [Rabbit Mq](https://www.rabbitmq.com/download.html) - Rabbit MQ server
 * project tags https://github.com/SainathYelamanchali/GameOfThree
 
 ## Authors
