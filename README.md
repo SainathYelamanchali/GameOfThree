@@ -2,7 +2,7 @@
 
 Game repo link : https://github.com/SainathYelamanchali/GameOfThree
 
-This project is developed as event driven micro-service which enables to play game of three between two players
+This project is developed on Windows environment as event driven micro-service which enables to play game of three between two players.
 After two players services are started , game can be initiated and continues to play till one of the player reached 1.
 The communication between two micro-services is done by Rabbit Mq messaging.
 
@@ -12,16 +12,22 @@ The communication between two micro-services is done by Rabbit Mq messaging.
 2. Maven installed
 3. Erlang installed (required for Rabbit Mq)
 4. Rabbit MQ server installed 
+5. Git installed
+6. Windows environment
+
 
 ## Getting Started
+1. Start the rabbit mq service before starting the players
+  check the status : rabbitmqctl.bat status
+  reference: https://www.rabbitmq.com/install-windows-manual.html
+ 
+2. Checkout the project to your local repo and build the application
 
-Checkout this project to your local repo and build the application
-
-go to pom.xml path -> mvn clean install
-
+go to pom.xml path of the project -> mvn clean install
+ 
 ### To Run the application from command line
  
-go to pom.xml path ->
+go to pom.xml path of the project ->
 
 To bring Player 1 instance:
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8085,instanceId=player1
@@ -47,19 +53,20 @@ mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8086,instanceId=pl
  Method : GET
  URL : http:// {hostname}: {port}/GameOfThree/init
  
-## For example:
-*If player1 wants to start the game,
-*GET: http://localhost:8085/GameOfThree/init
+## For example in localhost:
+1.If player1 wants to start the game,
+GET: http://localhost:8085/GameOfThree/init
 
-*If player2 wants to start the game
-*GET : http://localhost:8086/GameOfThree/init
+2.If player2 wants to start the game
+GET : http://localhost:8086/GameOfThree/init
 
   
 
+## How to check the messages in Rabbit Mq server
 
-
-
-
+Open the below url in browser:
+http: //{hostname}:15672/
+Credentials: guest/guest
 
 ## Built With
 
