@@ -3,7 +3,7 @@
 Game repo link : https://github.com/SainathYelamanchali/GameOfThree
 
 This project is developed on Windows environment as event driven micro-service which enables to play game of three between two players.
-After two players services are started , game can be initiated and continues to play till one of the player reached 1.
+After two players services are started , game can be initiated and continues to play till one of the player reached 1. and eventually is the winner!!!
 The communication between two micro-services is done by Rabbit Mq messaging.
 
 ### Prerequisites
@@ -21,7 +21,7 @@ The communication between two micro-services is done by Rabbit Mq messaging.
   check the status : rabbitmqctl.bat status
   reference: https://www.rabbitmq.com/install-windows-manual.html
  
-2. Checkout the project to your local repo and build the application
+2. Checkout the code to local repo and build the application using maven command
 
 go to pom.xml path of the project -> mvn clean install
  
@@ -30,24 +30,28 @@ go to pom.xml path of the project -> mvn clean install
 go to pom.xml path of the project ->
 
 To bring Player 1 instance:
+
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8085,instanceId=player1
 
 To bring Player 2 instance:
+
 mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8086,instanceId=player2
 
+server.port and instanceId are the run-time properties passed dynamically.
 
 ### To Run the application from IDE
 
 1. Import code into local IDE as maven project
-2. Run GameOfThreeApplication.java by changing the port number and instanceId for two different players
+2. Run GameOfThreeApplication.java by changing the port number and instanceId given as program arguments
+for two different players
 
 
 
 
 
-### How to start the game?
+### How to initiate the game?
  
- Hit the below url from specific player instance.
+ Hit the below url from specific player instance to get initiated
 
 
  Method : GET
